@@ -10,7 +10,7 @@ from sendgrid.helpers.mail import Mail
 app = Flask(__name__)
 cors = CORS(app)
 app.config["CORS_HEADERS"] = "Content-Type"
-@BB.route("/getBBands", methods=["POST"])
+@app.route("/sendMail", methods=["POST"])
 @cross_origin()
 def sendMail():
     to_email = request.json["to_email"]
@@ -29,6 +29,8 @@ def sendMail():
             print(response.headers)
         except Exception as e:
             print(e)
+        
+        return {"status": "sent"}
 
 
 if __name__ == "__main__":
